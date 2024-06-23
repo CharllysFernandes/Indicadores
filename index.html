@@ -18,17 +18,66 @@
         </div>
         <div class="d-flex flex-column align-items-center align-content-center justify-content-center bg-light">
             <!-- Local da imagem da planta para adicionar-->
-            <div class="imagem-planta"></div>
+            <div class="">
+                <img class="imagem-planta" src="./src/Imagem5.png" alt="planta">
+            </div>
         </div>
         <div class="d-flex flex-column align-items-center align-content-center justify-content-center bg-light">
-            <!--Tabela com colunas para adicionar Nome Setor-->
+            <div class="container my-5">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Escolha o turno
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#" id="sextaOption">Sexta</a></li>
+                        <li><a class="dropdown-item" href="#">Sábado</a></li>
+                        <li><a class="dropdown-item" href="#">Domingo</a></li>
+                        <li><a class="dropdown-item" href="#">Noturno</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    
+        <!-- Div para a tabela ser inserida -->
+        <div id="tableContainer" class="mt-4"></div>
+
     </main>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('sextaOption').addEventListener('click', function () {
+            // Verifica se a tabela já existe
+            let existingTable = document.getElementById('dataTable');
+            if (!existingTable) {
+                // Cria a tabela
+                let table = document.createElement('table');
+                table.id = 'dataTable';
+                table.className = 'table table-striped';
+
+                // Cria o cabeçalho da tabela
+                let thead = document.createElement('thead');
+                let headerRow = document.createElement('tr');
+                let headers = ['Setor', 'Indicador', 'Nome'];
+                headers.forEach(headerText => {
+                    let th = document.createElement('th');
+                    th.scope = 'col';
+                    th.textContent = headerText;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                // Cria o corpo da tabela (vazio no início)
+                let tbody = document.createElement('tbody');
+                table.appendChild(tbody);
+
+                // Adiciona a tabela ao contêiner
+                document.getElementById('tableContainer').appendChild(table);
+            }
+        });
+    </script>
 </body>
 
 </html>
